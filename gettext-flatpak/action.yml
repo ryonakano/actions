@@ -18,6 +18,7 @@ runs:
       run: |
         python3 -m pip install --user pipx==1.12.0
         python3 -m pipx ensurepath
+        source ~/.bashrc
       shell: bash
     - name: Install poetry
       run: pipx install poetry==2.0.0
