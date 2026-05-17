@@ -13,6 +13,21 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: actions/checkout@v6
+    - name: Install pipx
+      run: |
+        python3 -m pip install --user pipx=1.12.0
+        python3 -m pipx ensurepath
+      shell: bash
+    - name: Install poetry
+      run: pipx install poetry==2.0.0
+      shell: bash
+    - uses: actions/setup-python@v6
+      with:
+        python-version: '3.13'
+        cache: 'poetry'
+    - run: poetry install -C $GITHUB_ACTION_PATH
+      shell: bash
     - run: INPUT_MANIFEST_PATH=${{ inputs.manifest-path }} INPUT_REPOSITORY_NAME=${{ inputs.repository-name }} INPUT_REPOSITORY_URL=${{ inputs.repository-url }} $GITHUB_ACTION_PATH/entrypoint.sh
       shell: bash
 branding:

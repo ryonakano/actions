@@ -56,5 +56,5 @@ done
 
 # update the translation template and push changes if required
 echo -e "\n\033[1;32mSuccessfully build the project!\033[0m\n"
-python3 $GITHUB_ACTION_PATH/check-diff.py
+poetry run $GITHUB_ACTION_PATH/check-diff.py
 
